@@ -1,3 +1,5 @@
+﻿using Microsoft.EntityFrameworkCore;
+using ReelHub.Website.Data;
 namespace ReelHub.Website
 {
     public class Program
@@ -7,6 +9,9 @@ namespace ReelHub.Website
             Console.Title = "ReelHub - Website";
 
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<DatabaseContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Database") ?? 
+                throw new InvalidOperationException("Connection string 'DatabaseContext' not found.")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

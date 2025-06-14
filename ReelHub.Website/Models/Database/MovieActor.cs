@@ -10,8 +10,7 @@ namespace ReelHub.Website.Models.Database
         [Required]
         public Guid MovieId { get; set; }
         public Movie Movie { get; set; } = null!;
-
-        [Key]
+        
         [Required]
         public Guid ActorId { get; set; }
         public Actor Actor { get; set; } = null!;
