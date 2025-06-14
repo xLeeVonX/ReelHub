@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReelHub.Website.Data;
+
 namespace ReelHub.Website
 {
     public class Program
