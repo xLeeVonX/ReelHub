@@ -4,6 +4,8 @@ namespace ReelHub.Website
     {
         public static void Main(string[] args)
         {
+            Console.Title = "ReelHub - Website";
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
