@@ -11,7 +11,11 @@ namespace ReelHub.Website.Data
         
         public DbSet<Actor> Actors { get; set; } = default!;
         public DbSet<Director> Directors { get; set; } = default!;
-        
+        public DbSet<Movie> Movies { get; set; } = default!;
+
+        public DbSet<MovieActor> MovieActors { get; set; } = default!;
+        public DbSet<MovieDirector> MovieDirectors { get; set; } = default!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MovieActor>()
