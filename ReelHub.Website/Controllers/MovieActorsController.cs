@@ -45,8 +45,8 @@ namespace ReelHub.Website.Controllers
         // GET: MovieActors/Create
         public IActionResult Create()
         {
-            ViewData["ActorId"] = new SelectList(_context.Actors, "Id", "FirstName");
-            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "ImageUrl");
+            ViewData["ActorId"] = new SelectList(_context.Actors, "Id", "FullName");
+            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "Title");
             return View();
         }
 
@@ -59,13 +59,13 @@ namespace ReelHub.Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                movieActor.Id = Guid.NewGuid();
+                //  movieActor.Id = Guid.NewGuid();
                 _context.Add(movieActor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ActorId"] = new SelectList(_context.Actors, "Id", "FirstName", movieActor.ActorId);
-            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "ImageUrl", movieActor.MovieId);
+            ViewData["ActorId"] = new SelectList(_context.Actors, "Id", "FullName", movieActor.ActorId);
+            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "Title", movieActor.MovieId);
             return View(movieActor);
         }
 

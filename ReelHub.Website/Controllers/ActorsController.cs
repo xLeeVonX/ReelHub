@@ -17,7 +17,8 @@ namespace ReelHub.Website.Controllers
         // GET: Actors
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Actors.ToListAsync());
+            //  return View(await _context.Actors.ToListAsync());
+            return View(await _context.Actors.Include(a => a.Movies).ThenInclude(ma => ma.Movie).OrderBy(a => a.FirstName).ThenBy(x => x.LastName).ToListAsync());
         }
 
         // GET: Actors/Details/5

@@ -4,3 +4,11 @@
     object-fit: cover;
     object-position: top;
 }
+
+.action-buttons {
+    visibility: hidden;
+}
+
+tr:hover .action-buttons {
+    visibility: visible;
+}

@@ -22,6 +22,7 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -39,10 +40,23 @@
                         <b>Born:</b>&ensp;@item.Birthdate.ToString("MMMM dd, yyyy")
                     </div>
                 </td>
+                <td>
+                    @if (item.Movies.Any())
+                    {
+                        <ul>
+                            @foreach (var movie in item.Movies)
+                            {
+                                <li>@movie.Movie.Title</li>
+                            }
+                        </ul>
+                    }
+                </td>
                 <td class="col align-middle">
-                    <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a class="btn btn-sm btn-outline-secondary" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    <a class="btn btn-sm btn-outline-secondary" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <div class="action-buttons">
+                        <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-sm btn-outline-secondary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a class="btn btn-sm btn-outline-secondary" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
                 </td>
             </tr>
         }
