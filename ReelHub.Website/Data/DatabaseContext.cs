@@ -11,16 +11,9 @@ namespace ReelHub.Website.Data
         
         public DbSet<Actor> Actors { get; set; } = default!;
         public DbSet<Director> Directors { get; set; } = default!;
-        public DbSet<Movie> Movies { get; set; } = default!;
-        
-        public DbSet<MovieActor> MovieActors { get; set; } = default!;
-        public DbSet<MovieDirector> MovieDirectors { get; set; } = default!;
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MovieActor>()
-                .HasKey(ma => new { ma.MovieId, ma.ActorId });
-            
             modelBuilder.Entity<MovieActor>()
                 .HasOne(ma => ma.Movie)
                 .WithMany(m => m.Actors)
@@ -30,9 +23,6 @@ namespace ReelHub.Website.Data
                 .HasOne(ma => ma.Actor)
                 .WithMany(a => a.Movies)
                 .HasForeignKey(ma => ma.ActorId);
-            
-            modelBuilder.Entity<MovieDirector>()
-                .HasKey(md => new { md.MovieId, md.DirectorId });
             
             modelBuilder.Entity<MovieDirector>()
                 .HasOne(md => md.Movie)

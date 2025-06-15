@@ -23,6 +23,11 @@ namespace ReelHub.Website.Models.Database
         [Range(30, 300)]
         public int Length { get; set; }
 
+        [Required]
+        [DataType(DataType.ImageUrl)]
+        [Display(Name = "Image Url")]
+        public string? ImageUrl { get; set; }
+
         //  Lists...
         public List<MovieActor> Actors { get; set; } = new List<MovieActor>();
         public List<MovieDirector> Directors { get; set; } = new List<MovieDirector>();

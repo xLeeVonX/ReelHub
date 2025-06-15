@@ -1,53 +1,50 @@
 ﻿@model IEnumerable<ReelHub.Website.Models.Database.Actor>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Actors";
 }
 
-<h1>Index</h1>
+<div class="row m-0 mt-5 mb-1">
+    <div class="col-auto d-flex align-items-center">
+        <h6 class="display-6">@ViewData["Title"]</h6>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+    <div class="col"></div>
+
+    <div class="col-auto d-flex align-items-center">
+        <a class="btn btn-sm btn-secondary px-3" asp-action="Create">Create</a>
+    </div>
+</div>
+
+<table class="table table-hover">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Birthdate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
+            <th></th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Birthdate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="col-1">
+                    <img class="actorImg rounded-circle" src="@item.ImageUrl" />
+                </td>
+                <td class="col-3">
+                    <div class="display-6 fs-5 text-black">
+                        <b>@Html.DisplayFor(modelItem => item.FullName)</b>
+                    </div>
+                    <div class="display-6 fs-6 text-black text-opacity-75">
+                        <b>Born:</b>&ensp;@item.Birthdate.ToString("MMMM dd, yyyy")
+                    </div>
+                </td>
+                <td class="col align-middle">
+                    <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-sm btn-outline-secondary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-sm btn-outline-secondary" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
